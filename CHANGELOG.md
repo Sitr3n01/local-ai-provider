@@ -15,6 +15,13 @@ pre-releases (`2.0.0-canary.N`).
   GO-2026-6865 in the zstd decoder the edge uses for compressed request bodies.
   Both have to move together; either one alone leaves the CI job failing.
 
+### Changed
+
+- `cache_ram_mib` drops from 8192 to 4096 on the four active profiles. The
+  public model now requires 22.9 GiB of available commit instead of 26.9, which
+  an ordinary desktop on the reference workstation could not offer
+  (`docs/adr/0016`, addendum). The trade-off is in `docs/TUNING.md` §1.4.
+
 ## [2.0.0-canary.1] - 2026-10-04
 
 The first tagged release of v2: everything built since the v1 prototype, as it

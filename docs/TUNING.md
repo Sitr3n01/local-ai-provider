@@ -344,6 +344,13 @@ why ADRs 0009 and 0010 exist:
   no longer the public model, which moved to the 256k profile the same day —
   and its runtime (10225) has the same defaults, so its cache is still live
   and uncounted.
+- **4096 since 2026-11-25.** The four active profiles declare half of the
+  runtime default. Admission charges the whole ceiling whether or not it fills,
+  and at 8 GiB the public model needed 26.9 GiB of available commit on a
+  workstation that had 24.9 (`docs/adr/0016`). 4 GiB still holds at least one
+  full-window KV state of every active profile (computed: 2.25 GiB for Agent,
+  about 1.4 GiB for Huge). What it costs is reuse across *alternating* long
+  conversations, which was never measured at either size.
 - **Read the counters, not the log.** b10549 records neither checkpoint creation
   nor restoration at default verbosity. `timings.cache_n` and `timings.prompt_n`
   are the evidence.
