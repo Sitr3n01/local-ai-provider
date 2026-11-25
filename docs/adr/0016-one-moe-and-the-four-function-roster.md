@@ -182,3 +182,23 @@ prompt that actually fills the window pays the time to first token recorded in
 The harness templates in `integrations/` pin the new id. The installed canary
 and any installed harness profile follow only after they are regenerated and
 reinstalled (`New-V2Config.ps1 -Environment Canary -Apply`).
+
+## Addendum, 2026-11-25: the public model's admission cost
+
+`cache_ram_mib` goes from 8192 to 4096 on the four active profiles. Read on
+`/api/v1/status` that day with an ordinary desktop and no model loaded, the edge
+reported 24.87 GiB of commit headroom against the 26.91 GiB the public model
+required, so the model every client pins would have been refused. Eight of those
+gibibytes were the ceiling of a prompt cache that moved private memory by at most
+0.30 GiB in the measured sessions.
+
+| Profile | Required commit before | After |
+|---|---:|---:|
+| `gemma4-12b-qat-ud-q4xl-256k` (public) | 26.91 | 22.91 |
+| `qwen38-27b-deep-32k` | 26.32 | 22.32 |
+| `qwen38-27b-agent-128k` | 25.38 | 21.38 |
+| `qwen36-35b-a3b-huge-256k` | 32.61 | 28.61 |
+
+The figures are the manifest's `peak_commit_gib` plus the 4 GiB reserve plus the
+declared cache. Huge still does not fit that headroom. The change does not touch
+`resources`, which are measured with a cold prompt cache.
