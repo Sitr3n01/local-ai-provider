@@ -1,10 +1,10 @@
 module github.com/Sitr3n01/local-ai-provider
 
-go 1.26.6
+go 1.26.11
 
 require (
 	github.com/google/jsonschema-go v0.4.3
-	github.com/klauspost/compress v1.19.0
+	github.com/klauspost/compress v1.20.2
 	github.com/modelcontextprotocol/go-sdk v1.6.1
 	golang.org/x/sys v0.47.0
 	gopkg.in/yaml.v3 v3.0.1

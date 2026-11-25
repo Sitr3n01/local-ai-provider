@@ -7,7 +7,13 @@ pre-releases (`2.0.0-canary.N`).
 
 ## [Unreleased]
 
-Nothing yet.
+### Security
+
+- Go 1.26.11 (from 1.26.6) and `github.com/klauspost/compress` 1.20.2 (from
+  1.19.0). Together they clear the twelve findings `govulncheck` reported
+  against the edge and the desktop tooling: eleven in the standard library and
+  GO-2026-6865 in the zstd decoder the edge uses for compressed request bodies.
+  Both have to move together; either one alone leaves the CI job failing.
 
 ## [2.0.0-canary.1] - 2026-10-04
 
