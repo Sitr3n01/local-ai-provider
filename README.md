@@ -184,7 +184,7 @@ The runtime is pinned by measured SHA-256 rather than by its directory label, be
 ### Prerequisites
 
 - Windows 11 with PowerShell 5.1 or later.
-- Go 1.26.6 or later ([go.mod](go.mod) sets the toolchain floor; CI resolves its version from that file).
+- Go 1.26.11 or later ([go.mod](go.mod) sets the toolchain floor; CI resolves its version from that file).
 - For serving: an AMD GPU with a ROCm build of `llama-server`, and `llama-swap` — installed as pinned, hash-verified artifacts as described in the [Runbook](docs/RUNBOOK.md#2-install-pinned-artifacts).
 - Node.js 20.19 or later, only to run the monitor page's lint and DOM tests.
 
